@@ -19,21 +19,21 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
 /* if the game is a tie....   */
     if (playerSelection == computerSelection) {
-        return "You've tied with " + playerSelection + "! Try again.";
+        return "You've tied. womp womp! Try again lawl";
     } else {
 /* from previous, if tie - nobody gets points and try again! But if not a tie, check which of rock - paper - scissors is selected then go through that selected loop to determine if win or lose*/
         if (playerSelection == 'rock') {
             if (computerSelection == 'scissors') {
-                return "Rock smashes scissors! You Win teehee" 
-            } else return "Paper smothers rock! You Lose haa"
+                return "YOUR Rock smashes scissors! You Win teehee" 
+            } else return "Paper smothers YOUR rock! You Lose haa"
         } else if (playerSelection == 'paper') {
             if (computerSelection == 'rock') {
-                return "Paper smothers rock! You Win teehee"      
-            } else return "Scissors slice and dice paper! You Lose haa"
+                return "YOUR Paper smothers rock! You Win teehee"      
+            } else return "Scissors slice and dice YOUR paper! You Lose haa"
         } else if (playerSelection == 'scissors') {
             if (computerSelection == 'rock') {
-                return "Rock smashes scissors! You Lose haa"
-            } else return "Scissors slice and dice paper! You Win teehee"
+                return "Rock smashes YOUR scissors! You Lose haa"
+            } else return "YOUR Scissors slice and dice paper! You Win teehee"
         }
     }
 }
@@ -41,7 +41,25 @@ function playRound(playerSelection, computerSelection) {
 const playerSelection = 'rock'; /* returns undefined when called within function  */
 const computerSelection = computerPlay(); /* this function works fine, does not return undefined when called within playRound  */
 
+
+/* write a new function, game, to play a 5 round game that keeps score.. jk i cant figure out for loops yet
+for (let i = 1; i < 5; i++) {
+    console.log(playRound(playerSelection, computerSelection));
+    if (i > 1) {
+        console.log(playRound(playerSelection), computerSelection);
+    }
+} 
+*/
+
+
 /* for function to run, fill the parameters/arguments! */
-console.log(playRound(playerSelection, computerSelection)) 
+/*console.log(playRound(playerSelection, computerSelection))  
+*/
+
+function game() {
+    playRound(playerSelection, computerSelection)
+}
+
+game()
 
 
