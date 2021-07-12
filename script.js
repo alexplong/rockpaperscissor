@@ -24,42 +24,48 @@ function playRound(playerSelection, computerSelection) {
 /* from previous, if tie - nobody gets points and try again! But if not a tie, check which of rock - paper - scissors is selected then go through that selected loop to determine if win or lose*/
         if (playerSelection == 'rock') {
             if (computerSelection == 'scissors') {
-                return "YOUR Rock smashes scissors! You Win teehee" 
-            } else return "Paper smothers YOUR rock! You Lose haa"
+                return "YOUR Rock smashes scissors! You Win teehee" & playerScore++;
+            } else return "Paper smothers YOUR rock! You Lose haa" & computerScore++;
         } else if (playerSelection == 'paper') {
             if (computerSelection == 'rock') {
-                return "YOUR Paper smothers rock! You Win teehee"      
-            } else return "Scissors slice and dice YOUR paper! You Lose haa"
+                return "YOUR Paper smothers rock! You Win teehee" & playerScore++;      
+            } else return "Scissors slice and dice YOUR paper! You Lose haa" & computerScore++;
         } else if (playerSelection == 'scissors') {
             if (computerSelection == 'rock') {
-                return "Rock smashes YOUR scissors! You Lose haa"
-            } else return "YOUR Scissors slice and dice paper! You Win teehee"
+                return "Rock smashes YOUR scissors! You Lose haa" & computerScore++;
+            } else return "YOUR Scissors slice and dice paper! You Win teehee" & playerScore++;  
         }
     }
 }
 
+var playerScore = 0;
+var computerScore = 0;
 const playerSelection = 'rock'; /* returns undefined when called within function  */
 const computerSelection = computerPlay(); /* this function works fine, does not return undefined when called within playRound  */
 
 
-/* write a new function, game, to play a 5 round game that keeps score.. jk i cant figure out for loops yet
-for (let i = 1; i < 5; i++) {
-    console.log(playRound(playerSelection, computerSelection));
-    if (i > 1) {
-        console.log(playRound(playerSelection), computerSelection);
-    }
-} 
-*/
-
-
-/* for function to run, fill the parameters/arguments! */
-/*console.log(playRound(playerSelection, computerSelection))  
-*/
-
+/* when adding playRound parameter as an argument, want to pass it as func instead of func(). Using func() will pass the result of the function whereas using func will reference TO the function  
+function game(n, playRound) {  */
+    
 function game() {
-    playRound(playerSelection, computerSelection)
+    return playRound(playerSelection, computerSelection);
+
 }
 
-game()
+/*
+function game(n) {
+    for (var i = 1; i <= n; i++) {
+    console.log(playRound(playerSelection, computerSelection));
+    }
+}  */
 
 
+
+/*
+function game() {
+    return playRound(playerSelection, computerSelection);
+    return playRound(playeSelection, computerSelection);
+} */
+
+console.log(game())
+console
