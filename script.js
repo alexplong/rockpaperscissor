@@ -1,71 +1,92 @@
-/*
-1. begin with a function named computerPlay that will randomly return: 'rock', 'paper', or 'scissors'
-2. write function to play a single game of RPS and should take 2 parameters: playerSelection and computerSelection
-3. function should return string to declare a winner or loser and why.
-4. make player function so Rock, rock, ROCK, or any variation will be correctly read in
-5. 
-*/
+// 1. begin with a function named computerPlay that will randomly return: 'rock', 'paper', or 'scissors'
+// 2. write function to play a single game of RPS and should take 2 parameters: playerSelection and computerSelection
+// 3. function should return string to declare a winner or loser and why.
+// 4. make player function so Rock, rock, ROCK, or any variation will be correctly read in
 
 
-/* function [computerPlay] that will randomly return 'rock' 'paper' or 'scissors' */
+
+
+// function [computerPlay] that will randomly return 'rock' 'paper' or 'scissors'
 function computerPlay() {
-    computerRandom = ['rock' , 'paper' , 'scissors'];
-    computerRandom = computerRandom[Math.floor(Math.random()*computerRandom.length)];
-    return computerRandom;
+    let computerRandom = ['rock' , 'paper' , 'scissors'];
+    computerOut = computerRandom[Math.floor(Math.random()*computerRandom.length)];
+    return computerOut;
 }
 
-/* function to play a single game of rock, paper, scissors using two-parameters that will return a string to declare a winner or loser (and why a win/loss) */
+// function to play a single game of rock, paper, scissors using two-parameters that will return a string to declare a winner or loser (and why a win/loss)
+
+let playerSelection = 'rock'; /* returns undefined when called within function  */
+let computerSelection = computerPlay(); /* this function works fine, does not return undefined when called within playRound  */
+let playerScore = 0;
+let computerScore = 0;
+
+// playRound function
 
 function playRound(playerSelection, computerSelection) {
-/* if the game is a tie....   */
-    if (playerSelection == computerSelection) {
-        return "You've tied. womp womp! Try again lawl";
-    } else {
-/* from previous, if tie - nobody gets points and try again! But if not a tie, check which of rock - paper - scissors is selected then go through that selected loop to determine if win or lose*/
-        if (playerSelection == 'rock') {
+    
+    if (playerSelection == 'rock' || playerSelection == 'paper' || playerSelection == 'scissors'){
+        if (playerSelection == computerSelection) {
+            return ("You've tied with your opponent! Select another weapon for battle!");
+        } else if (playerSelection == 'rock') {
             if (computerSelection == 'scissors') {
-                return "YOUR Rock smashes scissors! You Win teehee" & playerScore++;
-            } else return "Paper smothers YOUR rock! You Lose haa" & computerScore++;
+                playerScore++;
+                return "Rock beats scissors, you win!";
+            } else {
+                computerScore++;
+                return "paper smothers your rock, you lose!";
+            }
         } else if (playerSelection == 'paper') {
             if (computerSelection == 'rock') {
-                return "YOUR Paper smothers rock! You Win teehee" & playerScore++;      
-            } else return "Scissors slice and dice YOUR paper! You Lose haa" & computerScore++;
+                playerScore++;
+                return "Paper smothers rock, you win!";
+            } else {
+                computerScore++;
+                return "Scissors slice and dice your paper, you lose!";
+            }
         } else if (playerSelection == 'scissors') {
             if (computerSelection == 'rock') {
-                return "Rock smashes YOUR scissors! You Lose haa" & computerScore++;
-            } else return "YOUR Scissors slice and dice paper! You Win teehee" & playerScore++;  
+                computerScore++;
+                return "Rock beats scissors, you lose!";
+            } else {
+                playerScore++;
+                return "Scissors slice and dice paper, you win!";
+            }
         }
+    } else { // run this code if entries are incorrect
+        return ('Please enter a rock, a paper, or scissors into battle!');
+    }
+} 
+
+// console.log(playRound(playerSelection, computerPlay()));
+// console.log(playRound(playerSelection, computerPlay()));
+// console.log(playRound('rock', 'paper'))
+
+function game(rounds = 5) {
+    console.log('Starting a 5-round battle of rock, paper, scissors with the AI Hive Mind! Are you ready?!')
+    let roundOne = playRound('rock', computerPlay());
+    let roundTwo = playRound('rock', computerPlay());
+    let roundThree = playRound('scissors', computerPlay());
+    let roundFour = playRound('paper', computerPlay());
+    let roundFive = playRound('paper', computerPlay());
+    console.log(`Round 1... Fight! --- ${roundOne}`);
+    // console.log(roundOne);
+    console.log(`Round 2... Fight! --- ${roundTwo}`)
+    // console.log(roundTwo);
+    console.log(`Round 3... Fight! --- ${roundThree}`)
+    // console.log(roundThree);
+    console.log(`Round 4... Fight! --- ${roundFour}`)
+    // console.log(roundFour);
+    console.log(`Round 5... Fight! --- ${roundFive}`)
+    // console.log(roundFive);
+    console.log(playerScore);
+    console.log(computerScore);
+    if (playerScore == computerScore) {
+        console.log("You've tied! Better level up and come back for a rematch");
+    } else if (playerScore > computerScore) {
+        console.log(`You beat the computer: ${playerScore} rounds to ${computerScore} rounds. Congrats! You've won the long war!`);
+    } else {
+        console.log(`AI Hive Mind won: ${computerScore} rounds to ${playerScore} rounds and all of humanity is lost :(`);
     }
 }
-
-var playerScore = 0;
-var computerScore = 0;
-const playerSelection = 'rock'; /* returns undefined when called within function  */
-const computerSelection = computerPlay(); /* this function works fine, does not return undefined when called within playRound  */
-
-
-/* when adding playRound parameter as an argument, want to pass it as func instead of func(). Using func() will pass the result of the function whereas using func will reference TO the function  
-function game(n, playRound) {  */
-    
-function game() {
-    return playRound(playerSelection, computerSelection);
-
-}
-
-/*
-function game(n) {
-    for (var i = 1; i <= n; i++) {
-    console.log(playRound(playerSelection, computerSelection));
-    }
-}  */
-
-
-
-/*
-function game() {
-    return playRound(playerSelection, computerSelection);
-    return playRound(playeSelection, computerSelection);
-} */
 
 console.log(game())
-console
