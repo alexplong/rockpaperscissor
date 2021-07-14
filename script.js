@@ -61,6 +61,8 @@ function playRound(playerSelection, computerSelection) {
 // console.log(playRound(playerSelection, computerPlay()));
 // console.log(playRound('rock', 'paper'))
 
+
+// not a for loop version of the game
 function game(rounds = 5) {
     console.log('Starting a 5-round battle of rock, paper, scissors with the AI Hive Mind! Are you ready?!')
     let roundOne = playRound('rock', computerPlay());
@@ -89,4 +91,9 @@ function game(rounds = 5) {
     }
 }
 
+// for loop version of the game
+
+
 console.log(game())
+
+
