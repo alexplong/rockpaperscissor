@@ -91,9 +91,39 @@ function game(rounds = 5) {
     }
 }
 
+
+
+// two-round version
+
+const playerPromptSelection = `Choose your weapon wisely! It's case and spelling sensitive! Until you can upgrade your weapon bwahahaha! Choose one: rock, paper, or scissors`;
+
+
+function oneGame(rounds = 1) {
+    console.log('Starting a 5-round battle of rock, paper, scissors with the AI Hive Mind! Are you ready?!')
+    let roundOne = playRound(prompt(playerPromptSelection), computerPlay());
+    let roundTwo = playRound(prompt(playerPromptSelection), computerPlay());
+
+    console.log(`Round 1... Fight! --- ${roundOne}`);
+    // console.log(roundOne);
+    console.log(`Round 2... Fight! --- ${roundTwo}`)
+    // console.log(roundTwo);
+    if (playerScore == computerScore) {
+        console.log("You've tied! Better level up and come back for a rematch");
+    } else if (playerScore > computerScore) {
+        console.log(`You beat the computer: ${playerScore} rounds to ${computerScore} rounds. Congrats! You've won the long war!`);
+    } else {
+        console.log(`AI Hive Mind won: ${computerScore} rounds to ${playerScore} rounds and all of humanity is lost :(`);
+    }
+}
+
+// add prompt for rock paper or scissors
+
+
+
+
 // for loop version of the game
 
 
-console.log(game())
-
+// console.log(game())
+console.log(oneGame())
 
