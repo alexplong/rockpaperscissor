@@ -4,26 +4,23 @@
 // 4. make player function so Rock, rock, ROCK, or any variation will be correctly read in
 
 
-
-
-// function [computerPlay] that will randomly return 'rock' 'paper' or 'scissors'
+// Create a function [computerPlay] that will randomly return 'rock' 'paper' or 'scissors' for computer player
 function computerPlay() {
     let computerRandom = ['rock' , 'paper' , 'scissors'];
     computerOut = computerRandom[Math.floor(Math.random()*computerRandom.length)];
     return computerOut;
 }
 
-// function to play a single game of rock, paper, scissors using two-parameters that will return a string to declare a winner or loser (and why a win/loss)
 
-let playerSelection = 'rock'; /* returns undefined when called within function  */
+// Create a function to play a single game of rock, paper, scissors using two-parameters that will return a string to declare a winner or loser (and why a win/loss)
+// let playerSelection = 'rock'; /* returns undefined when called within function  */
 let computerSelection = computerPlay(); /* this function works fine, does not return undefined when called within playRound  */
 let playerScore = 0;
 let computerScore = 0;
 
-// playRound function
 
+// A single playRound function
 function playRound(playerSelection, computerSelection) {
-    
     if (playerSelection == 'rock' || playerSelection == 'paper' || playerSelection == 'scissors'){
         if (playerSelection == computerSelection) {
             return ("You've tied with your opponent! Select another weapon for battle!");
@@ -33,7 +30,7 @@ function playRound(playerSelection, computerSelection) {
                 return "Rock beats scissors, you win!";
             } else {
                 computerScore++;
-                return "paper smothers your rock, you lose!";
+                return "Paper smothers your rock, you lose!";
             }
         } else if (playerSelection == 'paper') {
             if (computerSelection == 'rock') {
@@ -57,73 +54,56 @@ function playRound(playerSelection, computerSelection) {
     }
 } 
 
-// console.log(playRound(playerSelection, computerPlay()));
-// console.log(playRound(playerSelection, computerPlay()));
-// console.log(playRound('rock', 'paper'))
 
-
-// not a for loop version of the game
-function game(rounds = 5) {
-    console.log('Starting a 5-round battle of rock, paper, scissors with the AI Hive Mind! Are you ready?!')
-    let roundOne = playRound('rock', computerPlay());
-    let roundTwo = playRound('rock', computerPlay());
-    let roundThree = playRound('scissors', computerPlay());
-    let roundFour = playRound('paper', computerPlay());
-    let roundFive = playRound('paper', computerPlay());
-    console.log(`Round 1... Fight! --- ${roundOne}`);
-    // console.log(roundOne);
-    console.log(`Round 2... Fight! --- ${roundTwo}`)
-    // console.log(roundTwo);
-    console.log(`Round 3... Fight! --- ${roundThree}`)
-    // console.log(roundThree);
-    console.log(`Round 4... Fight! --- ${roundFour}`)
-    // console.log(roundFour);
-    console.log(`Round 5... Fight! --- ${roundFive}`)
-    // console.log(roundFive);
-    console.log(playerScore);
-    console.log(computerScore);
-    if (playerScore == computerScore) {
-        console.log("You've tied! Better level up and come back for a rematch");
-    } else if (playerScore > computerScore) {
-        console.log(`You beat the computer: ${playerScore} rounds to ${computerScore} rounds. Congrats! You've won the long war!`);
-    } else {
-        console.log(`AI Hive Mind won: ${computerScore} rounds to ${playerScore} rounds and all of humanity is lost :(`);
-    }
-}
+// // not a for loop version of the game
+// function game(rounds = 5) {
+//     console.log('Starting a 5-round battle of rock, paper, scissors with the AI Hive Mind! Are you ready?!')
+//     let roundOne = playRound(prompt(playerPromptSelection), computerPlay());
+//     let roundTwo = playRound(prompt(playerPromptSelection), computerPlay());
+//     let roundThree = playRound(prompt(playerPromptSelection), computerPlay());
+//     let roundFour = playRound(prompt(playerPromptSelection), computerPlay());
+//     let roundFive = playRound(prompt(playerPromptSelection), computerPlay());
+//     console.log(`Round 1... Fight! --- ${roundOne}`);
+//     console.log(`Round 2... Fight! --- ${roundTwo}`)
+//     console.log(`Round 3... Fight! --- ${roundThree}`)
+//     console.log(`Round 4... Fight! --- ${roundFour}`)
+//     console.log(`Round 5... Fight! --- ${roundFive}`)
+//     if (playerScore == computerScore) {
+//         console.log("You've tied! Better level up and come back for a rematch");
+//     } else if (playerScore > computerScore) {
+//         console.log(`You beat the computer: ${playerScore} rounds to ${computerScore} rounds. Congrats! You've won the long war!`);
+//     } else {
+//         console.log(`AI Hive Mind won: ${computerScore} rounds to ${playerScore} rounds and all of humanity is lost :(`);
+//     }
+// }
 
 
 
-// two-round version
+// rps-ui buttons
 
-const playerPromptSelection = `Choose your weapon wisely! It's case and spelling sensitive! Until you can upgrade your weapon bwahahaha! Choose one: rock, paper, or scissors`;
+// create a variable for each button and generate event listener for click to play selection and display results
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
 
+rockButton.addEventListener('click', () =>{
+    console.log(playRound('rock', computerPlay()));
+});
+paperButton.addEventListener('click', () =>{
+    console.log(playRound('paper', computerPlay()));
+});
+scissorsButton.addEventListener('click', () =>{
+    console.log(playRound('scissors', computerPlay()));
+});
 
-function oneGame(rounds = 1) {
-    console.log('Starting a 5-round battle of rock, paper, scissors with the AI Hive Mind! Are you ready?!')
-    let roundOne = playRound(prompt(playerPromptSelection), computerPlay());
-    let roundTwo = playRound(prompt(playerPromptSelection), computerPlay());
+// create container for game results
+const container = document.querySelector('#container');
+const content = document.createElement('div');
+content.classList.add('gameResults');
 
-    console.log(`Round 1... Fight! --- ${roundOne}`);
-    // console.log(roundOne);
-    console.log(`Round 2... Fight! --- ${roundTwo}`)
-    // console.log(roundTwo);
-    if (playerScore == computerScore) {
-        console.log("You've tied! Better level up and come back for a rematch");
-    } else if (playerScore > computerScore) {
-        console.log(`You beat the computer: ${playerScore} rounds to ${computerScore} rounds. Congrats! You've won the long war!`);
-    } else {
-        console.log(`AI Hive Mind won: ${computerScore} rounds to ${playerScore} rounds and all of humanity is lost :(`);
-    }
-}
+// how to get scores to update
+content.textContent = `CURRENT SCORE: Hoomans: ${playerScore}     Computer Intelligence: ${computerScore}`;
 
-// add prompt for rock paper or scissors
-
-
-
-
-// for loop version of the game
-
-
-// console.log(game())
-console.log(oneGame())
+// content.appendChild(container);
+container.insertBefore(content, buttons);
 
