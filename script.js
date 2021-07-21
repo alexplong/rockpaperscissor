@@ -13,8 +13,7 @@ function computerPlay() {
 
 
 // Create a function to play a single game of rock, paper, scissors using two-parameters that will return a string to declare a winner or loser (and why a win/loss)
-// let playerSelection = 'rock'; /* returns undefined when called within function  */
-let computerSelection = computerPlay(); /* this function works fine, does not return undefined when called within playRound  */
+let computerSelection = computerPlay(); 
 let playerScore = 0;
 let computerScore = 0;
 
@@ -82,28 +81,54 @@ function playRound(playerSelection, computerSelection) {
 // rps-ui buttons
 
 // create a variable for each button and generate event listener for click to play selection and display results
-const rockButton = document.querySelector('#rock');
-const paperButton = document.querySelector('#paper');
-const scissorsButton = document.querySelector('#scissors');
+// const rockButton = document.querySelector('#rock');
+// const paperButton = document.querySelector('#paper');
+// const scissorsButton = document.querySelector('#scissors');
 
-rockButton.addEventListener('click', () =>{
-    console.log(playRound('rock', computerPlay()));
-});
-paperButton.addEventListener('click', () =>{
-    console.log(playRound('paper', computerPlay()));
-});
-scissorsButton.addEventListener('click', () =>{
-    console.log(playRound('scissors', computerPlay()));
-});
+// rockButton.addEventListener('click', () =>{
+//     // console.log(playRound('rock', computerPlay()));
+//     let rockResults = playRound('rock', computerPlay());
+//     round.textContent = `${rockResults}`;
+//     // console.log(rockResults);
+// });
+// paperButton.addEventListener('click', () =>{
+//     // console.log(playRound('paper', computerPlay()));
+//     let paperResults = playRound('paper', computerPlay());
+//     round.textContent = `${paperResults}`;
+// });
+// scissorsButton.addEventListener('click', () =>{
+//     // console.log(playRound('scissors', computerPlay()));
+//     let scissorsResults = playRound('scissors', computerPlay());
+//     round.textContent = `${scissorsResults}`;
+// });
+
+
+// create the same as above but more efficiently in a loop
+const allButtons = document.querySelectorAll('button');         // create a node list of all buttons
+allButtons.forEach((button) =>{                                 // use .forEach to iterate through each of the buttons
+    button.addEventListener('click', () =>{                     // listen for when a button is clicked and run function when it is clicked
+        let oneRound = playRound(button.id, computerPlay());    // play one round using the button.id as input for rock, paper, or scissors and place results in oneRound variable
+        round.textContent = `${oneRound}`;                      // display results in div.round element
+    })
+})
+
+
 
 // create container for game results
 const container = document.querySelector('#container');
-const content = document.createElement('div');
-content.classList.add('gameResults');
+const scores = document.createElement('div');
+const round = document.createElement('div');
+scores.classList.add('gameResults');
+round.classList.add('roundResults');
 
-// how to get scores to update
-content.textContent = `CURRENT SCORE: Hoomans: ${playerScore}     Computer Intelligence: ${computerScore}`;
+
 
 // content.appendChild(container);
-container.insertBefore(content, buttons);
+container.insertBefore(scores, buttons);
+container.appendChild(round);
+// round.append(container);
 
+
+
+// how to get scores to update
+scores.textContent = `CURRENT SCORE: Hoomans: ${playerScore}     Computer Intelligence: ${computerScore}`;
