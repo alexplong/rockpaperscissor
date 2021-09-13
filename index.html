@@ -1,21 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <title>Rock Paper Scissor Game</title>
   <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
+
 <body>
-  <div id='container'>
-    <!--Add 3 buttons for game GUI-->
-  <div id='buttons'>
-    <button id='rock'>ROCK</button>
-    <button id='paper'>PAPER</button>
-    <button id='scissors'>SCISSORS</button>
-  </div>
-  </div>
-  <script src="script.js">
-   
-  </script>
+  <!-- Nav bar -->
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+    <div class="container">
+      <a href="#" class="navbar-brand">One Hand to Rule Them All</a>
+    </div>
+  </nav>
+
+<!-- Game section -->
+  <section class="bg-primary p-5 text-center">
+    <div class='container' id='container'>
+
+  <!-- Game stats: left/right hand, total win/loss overtime, reset button -->
+      <div class="row">
+        <div class="col py-3 text-light">Pick a weapon!</div>
+        <div class="col btn-group">
+          <button class="btn btn-outline-dark text-light">LEFT Hand</button>
+          <button class="btn btn-outline-dark text-light">RIGHT Hand</button>
+        </div>
+        <div class="col py-3 text-light" id="lifetime">Lifetime win/loss score</div>
+        <button class="col btn btn-danger text-light">Lifetime Reset</button>
+
+      </div>
+      <div class="py-5 text-light" id='scores'></div>
+      <div class='btn-group' id='buttons'>
+        <button class="gamebtn btn btn-secondary mx-1 text-light" id='rock' >ROCK</button>
+        <button class="gamebtn btn btn-secondary mx-1 text-light" id='paper'>PAPER</button>
+        <button class="gamebtn btn btn-secondary mx-1 text-light" id='scissors'>SCISSORS</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Game results -->
+  <section class="bg-primary p-5 text-center">
+    <div class="text-light" id='round'></div>
+    <div class="text-light" id='winner'></div>
+  </section>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 </html>
